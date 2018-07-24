@@ -1,0 +1,59 @@
+
+* Vorgaben
+  - Laptop mit 64-bit Linux Kernel >= 3.16
+  - Nutzer sollen Nix 2.0.x installiert haben
+
+* Struktur
+
+  - Am Übungsblatt orientiert arbeiten
+  - 10:00 Aufbau
+  - 11:00 Einführung ca. 30min 
+    - Installationen ausprobieren
+  - 11:30 Einführung in den ersten Teil
+  - 11:45 Erster Teil des Übungsblatts <THEMA>
+    - Leute arbeiten selbstständig mit Hilfe der Tutoren
+  - zw 12:00 und 13:00 Mittagessen (Pizza holen?)
+  - 13:00 Einführung in den zweiten Teil <THEMA>
+  - 14:xx Einführung in den dritten Teil <THEMA>
+  - 15:xx Einführung in den vierten Teil <THEMA>
+  - 17:00 Recap und Fragen
+  - 18:00 Ende & offener Abend
+
+** Strategie generell
+   ~nix-x~ vs. ~nix x~ erklären
+
+* Erster Teil: Erste Schritte in Nix
+
+  - Soll praktisch sein mit alltagsnahen Beispielen
+  - nix Kommandos kennen lernen
+
+* Zweiter Teil: Die Funktionsweise von Nix
+
+  - Wie funktionieren Derivations
+  - Pipeline Expression -> drv -> realise
+    - anhand von sinnvollem Beispiel
+  ~nix show-derivation nixpkgs.hello~
+
+* Dritter Teil: Packaging
+
+* Vierter Teil: NixOS 
+** Aufsetzen:
+   In tmp Ordner:
+
+   NixOS VM installieren, mit ~./config.nix~
+   #+BEGIN_SRC 
+   {
+     i18.consoleKeyMap = "dvorak";
+     users.users.root.initialPassword = "root";
+     virtualisation.diskSize = 51200; # 50GiB
+     virtualisation.writableStoreUseTmpfs = false;
+     networking.hostName = "nixos-workshop";
+   }
+   #+END_SRC
+ 
+   Dann:
+   #+BEGIN_SRC 
+   nix-build '<nixpkgs/nixos>' \
+      --arg configuration ./config.nix \
+      -A vm
+   #+END_SRC
