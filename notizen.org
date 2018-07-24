@@ -7,7 +7,7 @@
 
   - Am Übungsblatt orientiert arbeiten
   - 10:00 Aufbau
-  - 11:00 Einführung ca. 30min 
+  - 11:00 Einführung ca. 30min
     - Installationen ausprobieren
   - 11:30 Einführung in den ersten Teil
   - 11:45 Erster Teil des Übungsblatts <THEMA>
@@ -36,12 +36,12 @@
 
 * Dritter Teil: Packaging
 
-* Vierter Teil: NixOS 
+* Vierter Teil: NixOS
 ** Aufsetzen:
    In tmp Ordner:
 
    NixOS VM installieren, mit ~./config.nix~
-   #+BEGIN_SRC 
+   #+BEGIN_SRC
    {
      i18.consoleKeyMap = "dvorak";
      users.users.root.initialPassword = "root";
@@ -50,9 +50,9 @@
      networking.hostName = "nixos-workshop";
    }
    #+END_SRC
- 
+
    Dann:
-   #+BEGIN_SRC 
+   #+BEGIN_SRC
    nix-build '<nixpkgs/nixos>' \
       --arg configuration ./config.nix \
       -A vm
